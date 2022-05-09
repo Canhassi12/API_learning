@@ -16,7 +16,7 @@ class Cliente
 
     
     public function getName() {
-        echo $this->name;
+        return $this->name;
     }
 
     public function getAge() {

@@ -1,6 +1,6 @@
 <?php
 
-include 'src\model\Cliente.php';
+include '../src/model/Cliente.php';
 
 class Data {
 
@@ -11,10 +11,13 @@ class Data {
         $this->conn = new PDO('mysql:host=localhost;dbname=api', 'root', 'root');
     }
 
-    public function post($client): void
+    public function post(Cliente $client): void
     {
-        $query = "INSERT INTO test (Name, Age, Email)
-        VALUES ($client->getName(), $client->getAge(), $client->getEmail())"; 
+        $query = sprintf("INSERT INTO test (Name, Age, Email) VALUES('%s', '%d', '%s')", 
+            $client->getName(),  
+            $client->getAge(), 
+            $client->getEmail()
+        ); 
         $this->conn->query($query);
     }
 
@@ -26,7 +29,6 @@ class Data {
     public function get($query): void
     {
         $this->conn->query($query);
-
     }
 
     public function delete($query): void
