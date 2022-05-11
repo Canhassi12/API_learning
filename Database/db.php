@@ -26,9 +26,11 @@ class Data {
         $this->conn->query($query);
     }
 
-    public function get($query): void
+    public function get()
     {
-        $this->conn->query($query);
+        $sql = "SELECT * FROM test";
+        $query = $this->conn->query($sql);
+        return $query->fetchAll();
     }
 
     public function delete($query): void
@@ -37,4 +39,3 @@ class Data {
     }
 
 }
-
